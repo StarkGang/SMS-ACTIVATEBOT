@@ -121,6 +121,4 @@ def gen_random_sys_version():
 
 @run_in_exc
 def gen_random_app_version():
-    return f"Telegram Android 8.{str(random.randint(5, 6))}." + str(
-        random.randint(3, 6)
-    ) 
+    return f"Telegram Android 8.{random.randint(5, 6)}.{random.randint(3, 6)}" 

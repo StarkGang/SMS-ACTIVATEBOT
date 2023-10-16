@@ -34,7 +34,7 @@ async def pin_g(c: Client, m):
 @bot_client.on_message(filters.command("add", ["!", "/"]))
 async def add_user(c: Client, m: Message):
     _m = await m.reply("Please Wait..")
-    if not m.from_user.id == OWNER_ID:
+    if m.from_user.id != OWNER_ID:
         if not (await is_users_sudo(m.from_user.id)): 
             return await _m.edit("<b>[ACCESS_DENIED]:</b> <code>You are not my owner.</code>")
     if m.reply_to_message and m.reply_to_message.from_user:
@@ -63,7 +63,7 @@ async def add_user(c: Client, m: Message):
 async def st_(c, m: Message):
     no_of_accounts = 0
     _m = await m.reply("PROCESSING..")
-    if not m.from_user.id == OWNER_ID:
+    if m.from_user.id != OWNER_ID:
         if not (await is_users_sudo(m.from_user.id)): 
             return await _m.edit("<b>[ACCESS_DENIED]:</b> <code>You are not my owner.</code>")
     api_key = await m.from_user.ask("Please Enter your API Key :")
@@ -76,7 +76,9 @@ async def st_(c, m: Message):
         balance = GetBalance().request(wrapper)
     except Exception as e:
         return await _m.edit(f"<b>[API_KEY_ERROR]:</b> <code>{e.args[1]} - Unable to get balance. check your api key please!</code>")
-    await _m.edit("<b>[API_KEY_OK]:</b> <code>Your Balance is :</code> <code>{}</code>".format(balance))
+    await _m.edit(
+        f"<b>[API_KEY_OK]:</b> <code>Your Balance is :</code> <code>{balance}</code>"
+    )
     country_ = await m.from_user.ask("Enter Country Code :")
     await country_.delete()
     await country_.request.delete()
@@ -134,7 +136,7 @@ async def st_(c, m: Message):
 
 @bot_client.on_message(filters.command("stop", ["/", "!"]))
 async def stop_(c, msg: Message):
-    if not msg.from_user.id == OWNER_ID:
+    if msg.from_user.id != OWNER_ID:
         if not (await is_users_sudo(msg.from_user.id)): 
             return await msg.reply("<b>[ACCESS_DENIED]:</b> <code>You are not my owner.</code>")
     m = await msg.reply("Please WAIT....")
