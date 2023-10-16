@@ -45,7 +45,7 @@ async def make_accounts(msg: Message, wrapper: Sms, country: str, range_: int = 
         if random_proxy:
             proxy_usage[random_proxy['hostname']] = 1
     while True:
-        if (range_) and (int(nacc) >= int(range_)) and (range_ > 0):
+        if range_ and int(nacc) >= range_ and range_ > 0:
             break
         nacc += 1
         try: activation = GetNumber(service=SmsService().Telegram, country=country, operator=SmsTypes.Operator.any).request(wrapper)
