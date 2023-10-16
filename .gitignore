@@ -1,0 +1,6 @@
+
+local.env
+*.session
+*.pyc
+mac.log
+*.db

@@ -1,0 +1,6 @@
+pyrogram
+tgcryto
+python-dotenv
+smsactivateru
+pyromod
+faker
